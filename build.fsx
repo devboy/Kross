@@ -47,6 +47,9 @@ let tags = ""
 // File system information 
 let solutionFile  = "Kross.sln"
 
+let projectFiles  = !! "**/*.??proj"
+                    -- "**/*.App.OSX.fsproj"
+
 // Pattern specifying assemblies to be tested using NUnit
 let testAssemblies = "tests/**/bin/Release/*Tests*.dll"
 
@@ -127,7 +130,7 @@ Target "CleanDocs" (fun _ ->
 // Build library & test project
 
 Target "Build" (fun _ ->
-    !! solutionFile
+    projectFiles
     |> MSBuildRelease "" "Rebuild"
     |> ignore
 )
