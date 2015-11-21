@@ -107,4 +107,10 @@
     <Compile Include="Main.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.FSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Kross.Shared.IOS\Kross.Shared.IOS.fsproj">
+      <Project>{074EC07D-8EB8-402D-A29D-DB52167B1191}</Project>
+      <Name>Kross.Shared.IOS</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

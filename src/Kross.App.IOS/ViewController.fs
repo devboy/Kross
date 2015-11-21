@@ -18,6 +18,10 @@ type ViewController (handle:IntPtr) =
     override x.ViewDidLoad () =
         base.ViewDidLoad ()
         // Perform any additional setup after loading the view, typically from a nib.
+        let l = new UILabel(x.View.Frame)
+        l.Text <- Kross.Library.Name
+        x.View.AddSubview l
+
 
     override x.ShouldAutorotateToInterfaceOrientation (toInterfaceOrientation) =
         // Return true for supported orientations
