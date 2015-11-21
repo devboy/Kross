@@ -18,10 +18,16 @@ type ViewController (handle:IntPtr) =
     override x.ViewDidLoad () =
         base.ViewDidLoad ()
         // Perform any additional setup after loading the view, typically from a nib.
-        let l = new UILabel(x.View.Frame)
+        let l = new UITextView(x.View.Frame)
+        l.AutoresizingMask <- UIViewAutoresizing.All
         l.Text <- Kross.Library.Name
         x.View.AddSubview l
 
+        Async.Start <| async {
+            let! posts = Kross.FSSnip.LoadPostsAsync 20
+            let text = String.concat "\n\n" posts
+            do CoreFoundation.DispatchQueue.MainQueue.DispatchAsync(fun () -> l.Text <- text)
+            }
 
     override x.ShouldAutorotateToInterfaceOrientation (toInterfaceOrientation) =
         // Return true for supported orientations
@@ -29,4 +35,3 @@ type ViewController (handle:IntPtr) =
            toInterfaceOrientation <> UIInterfaceOrientation.PortraitUpsideDown
         else
            true
-
