@@ -16,3 +16,4 @@ type MainWindow =
 
     override x.AwakeFromNib () =
         base.AwakeFromNib ()
+        x.Title <- Kross.Library.Name

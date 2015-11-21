@@ -148,4 +148,10 @@
       </ItemGroup>
     </When>
   </Choose>
+  <ItemGroup>
+    <ProjectReference Include="..\Kross\Kross.fsproj">
+      <Project>{96B98D3D-F622-436D-9D52-6FCD0297798D}</Project>
+      <Name>Kross</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
