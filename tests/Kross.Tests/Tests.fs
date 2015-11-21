@@ -20,10 +20,10 @@ let ``PostIds should be kind of random`` () =
 let ``Url should be valid`` () =
   Assert.IsTrue(System.Uri(FSSnip.urls |> Seq.head).IsAbsoluteUri)
 
-//[<Test>]
+//[<Test>]  
 //let ``Urls should be plenty`` () =
 //  Assert.AreEqual(10,FSSnip.urls |> Seq.take 10 |> Seq.length)
-
+//
 //[<Test>]
 //let ``Posts should be plenty`` () =
 //  Assert.AreEqual(10,FSSnip.posts |> Seq.take 10 |> Seq.length)

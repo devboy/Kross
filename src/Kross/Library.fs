@@ -10,12 +10,12 @@ module FSSnip =
     open FSharp.Data
 
     let private rand = Random()
-    let rec private chars () = seq {
+    let rec private chars() = seq {
         let d = rand.NextDouble()
         if d < 0.2 then yield rand.Next(48,57)
         if d > 0.4 then yield rand.Next(65,90)
         if d < 0.8 then yield rand.Next(97,122)
-        yield! chars ()
+        yield! chars()
         }
 
     let rec ids () = seq {
