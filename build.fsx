@@ -10,12 +10,13 @@ open Fake.ReleaseNotesHelper
 open Fake.UserInputHelper
 open System
 open System.IO
+open System.Text.RegularExpressions
+type Fsproj = Fake.MSBuild.ProjectSystem.ProjectFile
 #if MONO
 #else
 #load "packages/SourceLink.Fake/tools/Fake.fsx"
 open SourceLink
 #endif
-
 // --------------------------------------------------------------------------------------
 // START TODO: Provide project-specific details below
 // --------------------------------------------------------------------------------------
@@ -126,6 +127,42 @@ Target "Clean" (fun _ ->
 
 Target "CleanDocs" (fun _ ->
     CleanDirs ["docs/output"]
+)
+
+// --------------------------------------------------------------------------------------
+// Synchronize shared projects
+
+Target "ShareProjects" (fun _ ->
+    let pname = 
+        Path.GetFileName 
+        >> regex_replace ".Shared\..*\.fsproj" ""
+
+    let source = 
+        pname
+        >> fun n -> replace "$" n "./src/$/$.fsproj"
+        >> Path.GetFullPath
+
+    let link n f = Path.Combine("..", n, f)
+
+    let excluded (s:string) = 
+        [".*AssemblyInfo\.fs"; ".*\.fsx"]
+        |> Seq.map Regex
+        |> Seq.exists (fun r -> r.IsMatch(s))
+
+    let sync (src,shr) =
+        let sp,tp = Fsproj.FromFile src,Fsproj.FromFile shr
+        let link' = link (pname shr)
+        tp.Files
+        |> Seq.filter (excluded >> not) 
+        |> Seq.fold (fun (p:Fsproj) f -> p.RemoveFile(f)) tp
+        |> fun t -> Seq.fold (fun (p:Fsproj) f -> p.AddFile(link' f)) t sp.Files
+        |> fun t -> t.Save()
+
+    !! "src/**/*.Shared.*.fsproj"
+    |> Seq.map (fun shared -> source shared,shared)
+    |> Seq.map sync
+    |> Seq.toArray 
+    |> ignore
 )
 
 // --------------------------------------------------------------------------------------
