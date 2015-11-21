@@ -1,0 +1,23 @@
+type project
+owners
+    devboy
+authors 
+    devboy
+projectUrl
+    http://github.com/devboy/Kross
+iconUrl
+    https://raw.githubusercontent.com/devboy/Kross/master/docs/files/img/logo.png
+licenseUrl
+    http://github.com/devboy/Kross/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    
+summary
+    Crossplatform FSharp Application
+description
+    made with Xamarin
+
+
