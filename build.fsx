@@ -167,13 +167,15 @@ Target "ShareProjects" (fun _ ->
 
 // --------------------------------------------------------------------------------------
 // Watch the file-system for changes to trigger builds
+let mutable Watching = false
 
 Target "Watch" (fun _ ->    
     use watcher = !! "**/*.*" |> WatchChanges (fun changes ->
          let projectChange = Seq.exists (fun x -> x.FullPath.EndsWith ".fsproj")
-         let exec t = try run t with _ -> ()
-         if projectChange changes then 
-            do exec "ShareProjects"
+         let codeChange = Seq.exists (fun x -> x.FullPath.EndsWith ".fs")
+         let exec t = Watching <- true; Run t; Watching <- false;
+         if projectChange changes then do exec "ShareProjects"
+         else if codeChange changes then do exec "RunTests"
     )
 
     traceImportant "..."
@@ -197,12 +199,16 @@ Target "Build" (fun _ ->
 // Run the unit tests using test runner
 
 Target "RunTests" (fun _ ->
-    !! testAssemblies
-    |> NUnit (fun p ->
-        { p with
-            DisableShadowCopy = true
-            TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "TestResults.xml" })
+    try
+        !! testAssemblies
+        |> NUnit (fun p ->
+            { p with
+                DisableShadowCopy = true
+                TimeOut = TimeSpan.FromMinutes 20.
+                OutputFile = "TestResults.xml" })
+    with    
+        | e when Watching -> traceEndTask "NUnit" ""; traceImportant "!!! = !!! TESTS FAILED !!! = !!!"
+        | e -> raise e    
 )
 
 #if MONO
