@@ -38,6 +38,8 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Kross.App.OSX", "src\Kross.
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Kross.App.IOS", "src\Kross.App.IOS\Kross.App.IOS.fsproj", "{36491DCC-CCCA-4971-B230-A2527D15132B}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Kross.Shared.IOS", "src\Kross.Shared.IOS\Kross.Shared.IOS.fsproj", "{074EC07D-8EB8-402D-A29D-DB52167B1191}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,18 @@ Global
 		Debug|iPhone = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Release|iPhone.Build.0 = Release|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{074EC07D-8EB8-402D-A29D-DB52167B1191}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{36491DCC-CCCA-4971-B230-A2527D15132B}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
 		{36491DCC-CCCA-4971-B230-A2527D15132B}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{36491DCC-CCCA-4971-B230-A2527D15132B}.Debug|iPhone.ActiveCfg = Debug|iPhone
