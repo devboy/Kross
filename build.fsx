@@ -166,6 +166,25 @@ Target "ShareProjects" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
+// Watch the file-system for changes to trigger builds
+
+Target "Watch" (fun _ ->    
+    use watcher = !! "**/*.*" |> WatchChanges (fun changes ->
+         let projectChange = Seq.exists (fun x -> x.FullPath.EndsWith ".fsproj")
+         let exec t = try run t with _ -> ()
+         if projectChange changes then 
+            do exec "ShareProjects"
+    )
+
+    traceImportant "..."
+
+    while System.Console.ReadKey().Key <> ConsoleKey.Escape do ()
+
+    watcher.Dispose()
+)
+
+
+// --------------------------------------------------------------------------------------
 // Build library & test project
 
 Target "Build" (fun _ ->
