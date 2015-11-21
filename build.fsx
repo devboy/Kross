@@ -49,6 +49,8 @@ let solutionFile  = "Kross.sln"
 
 let projectFiles  = !! "**/*.??proj"
                     -- "**/*.App.OSX.fsproj"
+                    -- "**/*.App.IOS.fsproj"
+                    -- "**/*.Shared.IOS.fsproj"
 
 // Pattern specifying assemblies to be tested using NUnit
 let testAssemblies = "tests/**/bin/Release/*Tests*.dll"

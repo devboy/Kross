@@ -1,7 +1,7 @@
 ﻿namespace System
 open System.Reflection
 
-[<assembly: AssemblyTitleAttribute("Kross.Shared.IOS")>]
+[<assembly: AssemblyTitleAttribute("Kross.App.IOS")>]
 [<assembly: AssemblyProductAttribute("Kross")>]
 [<assembly: AssemblyDescriptionAttribute("Crossplatform FSharp Application")>]
 [<assembly: AssemblyVersionAttribute("1.0")>]
